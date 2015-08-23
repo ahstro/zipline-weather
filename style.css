@@ -1,0 +1,26 @@
+html{
+  font-family: 'GlacialIndifferenceRegular', sans-serif;
+    font-size: 16px;
+       height: 100%;
+}
+
+body {
+  background-color: #151515;
+   justify-content: center;
+       align-items: center;
+       line-height: 1.2rem;
+        overflow-y: scroll;
+        text-align: center;
+           display: flex;
+            height: 100%;
+             color: #eee;
+}
+
+#temp,
+#cond {
+  font-size: 1.2rem;
+}
+
+#temp {
+  cursor: pointer;
+}

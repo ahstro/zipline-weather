@@ -21,7 +21,6 @@ function setTemp (temperature, unit = 'C', dp = 2) {
   window.temp.innerHTML = getTemp(unit, dp, temperature) + '°' + unit
 }
 
-// TODO
 function getCond (conditions, id) {
   var prefix = ''
 
@@ -49,11 +48,6 @@ function setCond (weather) {
   window.cond.innerHTML = getCond(weather.description, weather.id)
 }
 
-function setBgColor (res, unit = 'C') {
-  let roundTemp = Math.round(temperature)
-  document.body.style.backgroundColor = `rgb(${128 + roundTemp}, 0, ${128 - roundTemp}`
-}
-
 function cycleUnit () {
   switch (window.temp.innerHTML.split('°')[1]) {
     case 'C': setTemp(res.main.temp, 'F'); break
@@ -65,8 +59,6 @@ function cycleUnit () {
 
 var req = new window.XMLHttpRequest()
 req.addEventListener('load', () => {
-  console.log(req.responseURL)
-  // Make res global?
   res = JSON.parse(req.responseText)
 
   setTemp(res.main.temp)
@@ -74,12 +66,10 @@ req.addEventListener('load', () => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // TODO: Move out of DOMContentLoaded
   // Get the users geolocation
   navigator.geolocation.getCurrentPosition((pos) => {
-    let [lat, lon] = [decimalRound(2, pos.coords.latitude), decimalRound(2, pos.coords.longitude)]
-    console.log(lat, lon)
+    var [lat, lon] = [pos.coords.latitude, pos.coords.longitude]
+
     // Complete the Ajax request to OpenWeatherMap with user geolocation and send
     req.open('GET', `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`, true)
     req.send()

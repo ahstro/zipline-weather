@@ -49,12 +49,8 @@ function setCond (weather) {
 }
 
 function cycleUnit () {
-  switch (window.temp.innerHTML.split('°')[1]) {
-    case 'C': setTemp(res.main.temp, 'F'); break
-    case 'F': setTemp(res.main.temp, 'K'); break
-    case 'K': setTemp(res.main.temp, 'R'); break
-    case 'R': setTemp(res.main.temp, 'C'); break
-  }
+  var units = ['C', 'F', 'K', 'R', 'C']
+  setTemp(res.main.temp, units[units.indexOf(window.temp.innerHTML.split('°')[1]) + 1])
 }
 
 var req = new window.XMLHttpRequest()
